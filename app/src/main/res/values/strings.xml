@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fitness Counter</string>
+    <string name="counterExercise">0</string>
+
+</resources>
