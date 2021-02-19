@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 
 public class FullscreenActivity extends AppCompatActivity {
-    Button button1;
+    Button button1, buttonExercise;
     private static int clickCounter=0;
     private RecyclerView exerciseList;
     private ExerciseListAdapter exerciseListAdapter;
@@ -31,6 +32,8 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
         button1=findViewById(R.id.button1);
+        buttonExercise=findViewById(R.id.buttonExercise);
+
         // начальная инициализация списка
         setInitialData();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
@@ -39,41 +42,24 @@ public class FullscreenActivity extends AppCompatActivity {
         // устанавливаем для списка адаптер
         recyclerView.setAdapter(adapter);
 
-
-
-        //exerciseList=findViewById(R.id.tv_exercise_1);
-        //LinearLayoutManager layoutManager=new LinearLayoutManager(this);
-        //exerciseList.setLayoutManager(layoutManager);
-        //exerciseList.setHasFixedSize(true);
-        //exerciseListAdapter=new ExerciseListAdapter(10);
-        //exerciseList.setAdapter(exerciseListAdapter);
-
-
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getId()==R.id.button1){
-                    clickCounter++;
-                    button1.setText(String.valueOf(clickCounter));
-                }
+                clickCounter++;
+                button1.setText(String.valueOf(clickCounter));
             }
         });
 
-        /*View.OnClickListener onClickListener = new View.OnClickListener() {
+        buttonExercise.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(v.getId()==R.id.button1){
-                    System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-                    button1.setText("2");
-                    textView.setText("22222222222");
-
-                }
+                Intent intent = new Intent(FullscreenActivity.this, TableExerciseAcrivity.class);
+                startActivity(intent);
             }
+        });
+    }
 
-            };*/
-        }
     private void setInitialData(){
-
         states.add(new State ("Бразилия", "Бразилиа", R.drawable.brazilia));
         states.add(new State ("Аргентина", "Буэнос-Айрес", R.drawable.brazilia));
         states.add(new State ("Колумбия", "Богота", R.drawable.brazilia));
